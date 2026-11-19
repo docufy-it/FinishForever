@@ -1,0 +1,15 @@
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\bin\Debug\net9.0\FinishForever.Application.deps.json
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\bin\Debug\net9.0\FinishForever.Application.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\bin\Debug\net9.0\FinishForever.Application.pdb
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\bin\Debug\net9.0\FinishForever.Domain.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\bin\Debug\net9.0\FinishForever.Domain.pdb
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.csproj.AssemblyReference.cache
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.AssemblyInfoInputs.cache
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.AssemblyInfo.cs
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.csproj.CoreCompileInputs.cache
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishFo.08E326F5.Up2Date
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\refint\FinishForever.Application.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.pdb
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\ref\FinishForever.Application.dll

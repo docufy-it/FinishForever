@@ -1,0 +1,24 @@
+@using FinishForever.Infrastructure.Services
+@page "/login"
+@rendermode InteractiveServer
+
+@inject NavigationManager Navigation
+@inject StravaApiClient StravaApi
+
+<h3>Login Strava</h3>
+
+<button class="btn btn-primary"
+        @onclick="Connect">
+    Connect with Strava
+</button>
+
+@code {
+
+    private void Connect()
+    {
+        Navigation.NavigateTo(
+            StravaApi.GetAuthorizationUrl(),
+            true);
+    }
+
+}
