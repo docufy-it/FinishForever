@@ -1,0 +1,11 @@
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\bin\Release\net9.0\FinishForever.Domain.deps.json
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\bin\Release\net9.0\FinishForever.Domain.dll
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\bin\Release\net9.0\FinishForever.Domain.pdb
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.GeneratedMSBuildEditorConfig.editorconfig
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.AssemblyInfoInputs.cache
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.AssemblyInfo.cs
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.csproj.CoreCompileInputs.cache
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.dll
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\refint\FinishForever.Domain.dll
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\FinishForever.Domain.pdb
+c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Release\net9.0\ref\FinishForever.Domain.dll

@@ -298,9 +298,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Authentication.OAuth": {
+            "Blazor-ApexCharts": {
               "target": "Package",
-              "version": "[2.3.14, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

@@ -1,0 +1,116 @@
+.hero-title[b-w2zv7mus17] {
+    font-size: 1.4rem;
+    color: #a1a1aa;
+}
+
+.hero-value[b-w2zv7mus17] {
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.hero-description[b-w2zv7mus17] {
+    margin-top: 12px;
+    color: #a1a1aa;
+    font-size: 1.1rem;
+}
+
+.stats-grid[b-w2zv7mus17] {
+
+    margin-top: 48px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.stat-card[b-w2zv7mus17] {
+
+    background: #18181b;
+
+    border: 1px solid #27272a;
+
+    border-radius: 18px;
+
+    padding: 24px;
+}
+
+.stat-card:hover[b-w2zv7mus17] {
+
+    border-color: #3a3a40;
+
+    transform: translateY(-2px);
+}
+
+.stat-number[b-w2zv7mus17] {
+
+    font-size: 2.2rem;
+
+    font-weight: 700;
+}
+
+.stat-label[b-w2zv7mus17] {
+
+    color: #a1a1aa;
+
+    margin-top: 8px;
+}
+
+.section-title[b-w2zv7mus17] {
+
+    margin-top: 60px;
+
+    margin-bottom: 20px;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+}
+
+.monthly-card[b-w2zv7mus17] {
+
+    background: var(--ff-surface);
+
+    border: 1px solid #222227;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.month-row[b-w2zv7mus17] {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid #222227;
+}
+
+.month-row:last-child[b-w2zv7mus17] {
+    border-bottom: none;
+}
+
+.month-name[b-w2zv7mus17] {
+
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+.month-data[b-w2zv7mus17] {
+
+    display: flex;
+
+    gap: 28px;
+
+    color: #a1a1aa;
+
+    font-size: .95rem;
+}

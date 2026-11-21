@@ -1,0 +1,323 @@
+@page "/year/{Year:int}"
+@rendermode InteractiveServer
+
+@using FinishForever.Application.Models
+
+@inject DashboardService DashboardService
+@inject UserSessionService Session
+@inject NavigationManager Navigation
+
+@if (_dashboard == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="ff-container">
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-title">
+                @Year RUNNING YEAR
+            </div>
+
+            <div class="hero-value">
+                @_dashboard.Summary.TotalKm.ToString("N0") km
+            </div>
+
+            <div class="hero-description">
+                @_dashboard.Summary.TotalActivities activities ·
+                @_dashboard.Summary.TotalHours.ToString("N0") hours ·
+                @_dashboard.Summary.TotalElevation.ToString("N0") m D+
+            </div>
+
+        </div>
+
+        <!-- INSIGHT -->
+
+        <div class="ff-insight">
+            @_dashboard.Summary.Insight
+        </div>
+
+        <!-- OVERVIEW -->
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Overview
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.TotalActivities
+                    </div>
+
+                    <div class="stat-label">
+                        Activities
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.TotalKm.ToString("N0")
+                    </div>
+
+                    <div class="stat-label">
+                        Kilometers
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.TotalHours.ToString("N0")
+                    </div>
+
+                    <div class="stat-label">
+                        Hours
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.TotalElevation.ToString("N0")
+                    </div>
+
+                    <div class="stat-label">
+                        Elevation
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- HIGHLIGHTS -->
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Highlights
+            </div>
+
+            <div class="highlight-grid">
+
+                <div class="highlight-card">
+
+                    <div class="highlight-title">
+                        Longest Run
+                    </div>
+
+                    <div class="highlight-value">
+                        @_dashboard.Summary.LongestRunKm.ToString("N1") km
+                    </div>
+
+                </div>
+
+                <div class="highlight-card">
+
+                    <div class="highlight-title">
+                        Best Month
+                    </div>
+
+                    <div class="highlight-value">
+                        @_dashboard.Summary.BestMonth
+                    </div>
+
+                </div>
+
+                <div class="highlight-card">
+
+                    <div class="highlight-title">
+                        Active Days
+                    </div>
+
+                    <div class="highlight-value">
+                        @_dashboard.Summary.ActiveDays
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TIMELINE -->
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Timeline
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @(_dashboard.Summary.FirstActivityDate
+                            .ToString("dd/MM"))
+                    </div>
+
+                    <div class="stat-label">
+                        First Activity
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @(_dashboard.Summary.LastActivityDate
+                            .ToString("dd/MM"))
+                    </div>
+
+                    <div class="stat-label">
+                        Last Activity
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.ActiveMonths
+                    </div>
+
+                    <div class="stat-label">
+                        Active Months
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MONTHLY PROGRESS -->
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Monthly Progress
+            </div>
+
+            <div class="month-list">
+
+                @{
+                    var maxKm =
+                        _dashboard.Months.Any()
+                            ? _dashboard.Months.Max(x => x.Km)
+                            : 1;
+                }
+
+                @foreach (var month in
+    _dashboard.Months
+        .OrderByDescending(x => x.Km))
+                {
+                    var width =
+                        maxKm == 0
+                            ? 0
+                            : (month.Km / maxKm) * 100;
+
+                    <div class="month-row">
+
+                        <div class="month-name">
+                            @month.MonthName
+                        </div>
+
+                        <div class="month-bar-container">
+
+                            <div class="month-bar"
+                                 style="width:@($"{width:F0}%")">
+                            </div>
+
+                        </div>
+
+                        <div class="month-value">
+                            @month.Km.ToString("N0") km
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        <!-- RECENT ACTIVITIES -->
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Recent Activities
+            </div>
+
+            <div class="activity-list">
+
+                @foreach (var activity in _dashboard.LatestActivities)
+                {
+                    <div class="activity-card">
+
+                        <div>
+
+                            <div class="activity-title">
+                                @activity.Name
+                            </div>
+
+                            <div class="activity-date">
+                                @activity.StartDate.ToString("dd MMM yyyy")
+                            </div>
+
+                        </div>
+
+                        <div class="activity-distance">
+                            @activity.DistanceKm.ToString("N1") km
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+@code
+{
+    [Parameter]
+    public int Year { get; set; }
+
+    private YearDashboardViewModel? _dashboard;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userId =
+            Session.GetCurrentUserId();
+
+        if (userId == null)
+        {
+            Navigation.NavigateTo("/");
+            return;
+        }
+
+        _dashboard =
+            await DashboardService
+                .GetYearDashboardAsync(
+                    userId.Value,
+                    Year);
+    }
+}

@@ -1,0 +1,39 @@
+@page "/dashboard"
+@using FinishForever.Infrastructure.Persistence
+@rendermode InteractiveServer
+
+@inject UserSessionService Session
+@inject ApplicationDbContext Db
+@inject NavigationManager Navigation
+
+@if (_user == null)
+{
+    <p>Utente non autenticato...</p>
+}
+else
+{
+    <h2>Welcome @_user.DisplayName</h2>
+
+    <p>Strava connected ✅</p>
+
+    <a href="/logout">Logout</a>
+}
+
+@code
+{
+    private ApplicationUser? _user;
+
+    protected override void OnInitialized()
+    {
+        var userId = Session.GetCurrentUserId();
+
+        if (userId == null)
+        {
+            Navigation.NavigateTo("/", true);
+            return;
+        }
+
+        _user = Db.ApplicationUsers
+            .FirstOrDefault(x => x.Id == userId);
+    }
+}

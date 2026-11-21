@@ -1,4 +1,4 @@
-namespace FinishForever.Domain.Entities;
+using FinishForever.Domain.Entities;
 
 public class ApplicationUser
 {
@@ -10,6 +10,10 @@ public class ApplicationUser
 
     public DateTime CreatedAt { get; set; }
         = DateTime.UtcNow;
+
+    public DateTime LastLoginAt { get; set; }
+
+    public DateTime? LastActivitySyncAt { get; set; }
 
     public StravaAthlete? StravaAthlete { get; set; }
 }

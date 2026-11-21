@@ -3,7 +3,8 @@ using FinishForever.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using FinishForever.Infrastructure.Configuration;
 using FinishForever.Infrastructure.Services;
-
+using ApexCharts;
+using FinishForever.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,14 +21,28 @@ builder.Services.Configure<StravaOptions>(
 
 builder.Services.AddHttpClient<StravaApiClient>();
 
-builder.Services.AddScoped<AthleteService>();
-builder.Services.AddScoped<ActivitySyncService>();
+builder.Services.AddScoped<StravaAthleteService>();
+builder.Services.AddScoped<
+    StravaActivityService>();
+builder.Services.AddScoped<DashboardService>();
+
+
+builder.Services.AddApexCharts();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSingleton<UserSessionService>();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var db =
+        scope.ServiceProvider
+            .GetRequiredService<ApplicationDbContext>();
 
-app.MapRazorComponents<App>()
-   .AddInteractiveServerRenderMode();
-   
+    db.Database.Migrate();
+}
+ 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

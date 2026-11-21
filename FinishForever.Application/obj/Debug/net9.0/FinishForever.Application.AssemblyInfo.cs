@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinishForever.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+438b3ecf7c26454d140a073cf4fde378a1ca83e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinishForever.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinishForever.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -22,7 +22,7 @@ namespace FinishForever.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FinishForever.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,51 +39,218 @@ namespace FinishForever.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("LastActivitySyncAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastLoginAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("ApplicationUsers", (string)null);
                 });
 
             modelBuilder.Entity("FinishForever.Domain.Entities.StravaActivity", b =>
                 {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AchievementCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ActivityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("AthleteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Distance")
+                    b.Property<double>("AverageCadence")
                         .HasColumnType("float");
 
-                    b.Property<int>("MovingTime")
-                        .HasColumnType("int")
-                        .HasAnnotation("Relational:JsonPropertyName", "moving_time");
+                    b.Property<double>("AverageHeartRate")
+                        .HasColumnType("float");
+
+                    b.Property<double>("AverageSpeed")
+                        .HasColumnType("float");
+
+                    b.Property<double>("AverageSpeedKmH")
+                        .HasColumnType("float");
+
+                    b.Property<double>("AverageWatts")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Calories")
+                        .HasColumnType("float");
+
+                    b.Property<int>("CommentCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeviceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DistanceKm")
+                        .HasColumnType("float");
+
+                    b.Property<double>("DistanceMeters")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ElapsedTimeSeconds")
+                        .HasColumnType("int");
+
+                    b.Property<double>("ElevationHigh")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ElevationLow")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("EndLatitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("EndLongitude")
+                        .HasColumnType("float");
+
+                    b.Property<long?>("ExternalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("GearId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasHeartRate")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasPower")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ImportedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCommute")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsFastestRun")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLongestRun")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsManual")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPersonalBest")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRace")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTrainer")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("KudosCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LocationCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationCountry")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LocationState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("MaxHeartRate")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MaxSpeed")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MaxSpeedKmH")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MaxWatts")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MovingTimeSeconds")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2")
-                        .HasAnnotation("Relational:JsonPropertyName", "start_date");
+                    b.Property<double>("PaceSecondsPerKm")
+                        .HasColumnType("float");
 
-                    b.Property<DateTime>("StartDateLocal")
-                        .HasColumnType("datetime2")
-                        .HasAnnotation("Relational:JsonPropertyName", "start_date_local");
+                    b.Property<int>("PhotoCount")
+                        .HasColumnType("int");
 
-                    b.Property<double>("TotalElevationGain")
-                        .HasColumnType("float")
-                        .HasAnnotation("Relational:JsonPropertyName", "total_elevation_gain");
-
-                    b.Property<string>("Type")
+                    b.Property<string>("Polyline")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("RelativeEffort")
+                        .HasColumnType("float");
+
+                    b.Property<string>("SportType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDateLocal")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("StartLatitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("StartLongitude")
+                        .HasColumnType("float");
+
+                    b.Property<long>("StravaActivityId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("SufferScore")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TimeZone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalElevationGain")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TotalPhotoCount")
+                        .HasColumnType("int");
+
+                    b.Property<double>("WeightedAverageWatts")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AthleteId");
 
-                    b.ToTable("Activities");
+                    b.HasIndex("StartDate");
+
+                    b.HasIndex("StravaActivityId")
+                        .IsUnique();
+
+                    b.ToTable("StravaActivities", (string)null);
                 });
 
             modelBuilder.Entity("FinishForever.Domain.Entities.StravaAthlete", b =>
@@ -96,9 +263,29 @@ namespace FinishForever.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("FirstSyncAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FollowerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FriendCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -107,13 +294,36 @@ namespace FinishForever.Infrastructure.Migrations
                     b.Property<DateTime?>("LastSyncAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("MutualFriendCount")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Premium")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfileLarge")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileMedium")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictureUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfilePictureUrlMedium")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ResourceState")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sex")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -133,6 +343,9 @@ namespace FinishForever.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StravaId")
@@ -141,7 +354,7 @@ namespace FinishForever.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("StravaAthletes");
+                    b.ToTable("StravaAthletes", (string)null);
                 });
 
             modelBuilder.Entity("FinishForever.Domain.Entities.StravaActivity", b =>
@@ -157,7 +370,7 @@ namespace FinishForever.Infrastructure.Migrations
 
             modelBuilder.Entity("FinishForever.Domain.Entities.StravaAthlete", b =>
                 {
-                    b.HasOne("FinishForever.Domain.Entities.ApplicationUser", "User")
+                    b.HasOne("ApplicationUser", "User")
                         .WithOne("StravaAthlete")
                         .HasForeignKey("FinishForever.Domain.Entities.StravaAthlete", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -166,7 +379,7 @@ namespace FinishForever.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FinishForever.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("ApplicationUser", b =>
                 {
                     b.Navigation("StravaAthlete");
                 });

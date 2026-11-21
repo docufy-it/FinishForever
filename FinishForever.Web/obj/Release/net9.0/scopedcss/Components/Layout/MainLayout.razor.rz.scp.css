@@ -1,0 +1,21 @@
+.page[b-mlla99862r] {
+    display: flex;
+    min-height: 100vh;
+
+    background: #09090b;
+    color: #fafafa;
+}
+
+aside[b-mlla99862r] {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+main[b-mlla99862r] {
+    flex: 1;
+    overflow-y: auto;
+}
+
+article[b-mlla99862r] {
+    padding: 40px;
+}

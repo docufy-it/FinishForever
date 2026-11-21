@@ -1,0 +1,49 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 420 140">
+
+    <defs>
+
+        <style>
+
+            .ff-loop {
+                fill: none;
+                stroke: #5B7FFF;
+                stroke-width: 16;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+
+            .ff-text {
+                fill: #FAFAFA;
+                font-family: Inter, Arial, sans-serif;
+                font-size: 42px;
+                font-weight: 600;
+            }
+
+        </style>
+
+    </defs>
+
+    <!-- Infinity -->
+
+    <path
+        class="ff-loop"
+        d="
+        M 40 70
+        C 70 25, 120 25, 150 70
+        C 180 115, 230 115, 260 70
+        C 290 25, 340 25, 370 70
+        C 340 115, 290 115, 260 70
+        C 230 25, 180 25, 150 70
+        C 120 115, 70 115, 40 70
+        " />
+
+    <!-- finish detail -->
+
+    <rect x="250" y="28" width="8" height="8" fill="#FAFAFA"/>
+    <rect x="258" y="36" width="8" height="8" fill="#FAFAFA"/>
+    <rect x="266" y="28" width="8" height="8" fill="#FAFAFA"/>
+    <rect x="274" y="36" width="8" height="8" fill="#FAFAFA"/>
+
+</svg>

@@ -1,23 +1,32 @@
 @page "/auth/strava-callback"
+
+@using FinishForever.Infrastructure.Persistence
 @using FinishForever.Infrastructure.Services
+@using FinishForever.Web.Services
+
 @rendermode InteractiveServer
 
 @inject NavigationManager Navigation
 @inject StravaApiClient StravaApi
-@inject ActivitySyncService SyncService
-@inject AthleteService AthleteService
+@inject StravaAthleteService StravaAthleteService
+@inject StravaActivityService StravaActivityService
+@inject ApplicationDbContext Db
+@inject UserSessionService Session
 
 <h3>@Message</h3>
 
-@code {
-
+@code
+{
     private string Message = "Autenticazione in corso...";
     private bool _processed;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(
+        bool firstRender)
     {
         if (!firstRender || _processed)
+        {
             return;
+        }
 
         _processed = true;
 
@@ -52,51 +61,45 @@
                 return;
             }
 
-            Infrastructure.Services.Dtos.StravaAthleteResponse? athlete =
+            var athlete =
                 await StravaApi.GetAthleteAsync(
                     token.AccessToken);
 
-var dbAthlete =
-    await AthleteService.GetOrCreateAsync(
-        athlete!.Id,
-        athlete.Username,
-        athlete.FirstName,
-        athlete.LastName,
-        athlete.Profile,
-        athlete.Premium,
-        athlete.Summit,
-        token.AccessToken,
-        token.RefreshToken,
-        DateTimeOffset
-            .FromUnixTimeSeconds(
-                token.ExpiresAt)
-            .UtcDateTime);
-
-            var activities =
-                await StravaApi.GetAllActivitiesAsync(
-                    token.AccessToken);
-
-await SyncService.SyncAsync(
-    dbAthlete.Id,
-    activities);
-
-            Console.WriteLine(
-                $"Activities found: {activities.Count}");
-
-            foreach (var activity in activities.Take(5))
+            if (athlete == null)
             {
-                Console.WriteLine(
-                    $"{activity.StartDateLocal:d} - {activity.Name} - {activity.Distance / 1000:N1} km");
+                Message = "Athlete non trovato";
+                StateHasChanged();
+                return;
             }
 
-            Message =
-                $"Benvenuto {athlete?.FirstName} {athlete?.LastName} - Attività trovate: {activities.Count}";
+            var dbAthlete =
+                await StravaAthleteService
+                    .GetOrCreateAsync(
+                        athlete,
+                        token);
+
+            Session.SignIn(
+                dbAthlete.UserId);
+
+            Message = "Import attività in corso...";
+            StateHasChanged();
+
+            var importedActivities =
+                await StravaActivityService
+                    .SyncAsync(
+                        dbAthlete.Id);
+
+            Console.WriteLine(
+                $"Imported activities: {importedActivities}");
+
+            Navigation.NavigateTo(
+                "/dashboard",
+                true);
         }
         catch (Exception ex)
         {
             Message = ex.ToString();
+            StateHasChanged();
         }
-
-        StateHasChanged();
     }
 }

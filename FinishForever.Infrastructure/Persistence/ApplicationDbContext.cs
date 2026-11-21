@@ -10,36 +10,55 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {
     }
-
-    public DbSet<ApplicationUser> Users
+public DbSet<ApplicationUser> ApplicationUsers
     => Set<ApplicationUser>();
 
 public DbSet<StravaAthlete> StravaAthletes
     => Set<StravaAthlete>();
 
-public DbSet<StravaActivity> Activities
+public DbSet<StravaActivity> StravaActivities
     => Set<StravaActivity>();
 
-        
         protected override void OnModelCreating(
     ModelBuilder builder)
 {
     base.OnModelCreating(builder);
 
-    builder.Entity<ApplicationUser>()
-        .HasOne(x => x.StravaAthlete)
-        .WithOne(x => x.User)
-        .HasForeignKey<StravaAthlete>(
-            x => x.UserId);
+    builder.Entity<ApplicationUser>(entity =>
+    {
+        entity.ToTable("ApplicationUsers");
 
-    builder.Entity<StravaAthlete>()
-        .HasMany(x => x.Activities)
-        .WithOne(x => x.Athlete)
-        .HasForeignKey(x => x.AthleteId);
+        entity.HasOne(x => x.StravaAthlete)
+              .WithOne(x => x.User)
+              .HasForeignKey<StravaAthlete>(x => x.UserId);
+    });
 
-    builder.Entity<StravaAthlete>()
-        .HasIndex(x => x.StravaId)
-        .IsUnique();
+    builder.Entity<StravaAthlete>(entity =>
+    {
+        entity.ToTable("StravaAthletes");
+
+        entity.HasIndex(x => x.StravaId)
+              .IsUnique();
+
+        entity.HasMany(x => x.Activities)
+              .WithOne(x => x.Athlete)
+              .HasForeignKey(x => x.AthleteId);
+    });
+
+    builder.Entity<StravaActivity>(entity =>
+    {
+        entity.ToTable("StravaActivities");
+
+        entity.HasIndex(x => x.StravaActivityId)
+              .IsUnique();
+    });
+
+    builder.Entity<StravaActivity>()
+    .HasIndex(x => x.AthleteId);
+
+    builder.Entity<StravaActivity>()
+    .HasIndex(x => x.StartDate);
+        
 }
 
 }

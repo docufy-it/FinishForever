@@ -1,0 +1,83 @@
+.ff-sidebar[b-0uqeepkcug] {
+    height: 100vh;
+
+    background: #111113;
+
+    border-right: 1px solid #27272a;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.ff-brand[b-0uqeepkcug] {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 40px;
+}
+
+.ff-logo img[b-0uqeepkcug] {
+
+    width: 48px;
+    height: 48px;
+}
+
+.ff-title[b-0uqeepkcug] {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.ff-section[b-0uqeepkcug] {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ff-link[b-0uqeepkcug] {
+
+    color: #a1a1aa;
+
+    text-decoration: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+}
+
+.ff-link:hover[b-0uqeepkcug] {
+    background: #18181b;
+    color: white;
+}
+
+.ff-link.active[b-0uqeepkcug] {
+    background: #18181b;
+    color: white;
+}
+
+.ff-footer[b-0uqeepkcug] {
+    margin-top: auto;
+
+    border-top: 1px solid #27272a;
+
+    padding-top: 20px;
+}
+
+.ff-user[b-0uqeepkcug] {
+    color: white;
+    font-weight: 600;
+}
+
+.ff-provider[b-0uqeepkcug] {
+    color: #a1a1aa;
+    font-size: .85rem;
+}
+
+.ff-link.active[b-0uqeepkcug] {
+    background: #18181b;
+    color: white;
+    font-weight: 600;
+}

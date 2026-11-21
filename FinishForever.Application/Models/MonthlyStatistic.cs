@@ -1,0 +1,16 @@
+namespace FinishForever.Application.Models;
+
+public class MonthlyStatistic
+{
+    public int Month { get; set; }
+
+    public string MonthName { get; set; } = "";
+
+    public double Km { get; set; }
+
+    public int Activities { get; set; }
+
+    public double Elevation { get; set; }
+
+    public double Hours { get; set; }
+}

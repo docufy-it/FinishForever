@@ -1,10 +1,8 @@
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using FinishForever.Infrastructure.Configuration;
-using Microsoft.Extensions.Options;
 using FinishForever.Infrastructure.Services.Dtos;
-using System.Net.Http.Headers;
-using System.Text.Json;
-using FinishForever.Domain.Entities;
+using Microsoft.Extensions.Options;
 
 namespace FinishForever.Infrastructure.Services;
 
@@ -32,7 +30,8 @@ public class StravaApiClient
             $"&scope=read,activity:read_all";
     }
 
-    public async Task<StravaTokenResponse?> ExchangeCodeAsync(string code)
+    public async Task<StravaTokenResponse?> ExchangeCodeAsync(
+        string code)
     {
         var response = await _httpClient.PostAsync(
             "https://www.strava.com/oauth/token",
@@ -51,66 +50,123 @@ public class StravaApiClient
     }
 
     public async Task<StravaAthleteResponse?> GetAthleteAsync(
-    string accessToken)
-{
-    var request = new HttpRequestMessage(
-        HttpMethod.Get,
-        "https://www.strava.com/api/v3/athlete");
+        string accessToken)
+    {
+        var request = new HttpRequestMessage(
+            HttpMethod.Get,
+            "https://www.strava.com/api/v3/athlete");
 
-    request.Headers.Authorization =
-        new System.Net.Http.Headers.AuthenticationHeaderValue(
-            "Bearer",
-            accessToken);
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                accessToken);
 
-    var response =
-        await _httpClient.SendAsync(request);
+        var response =
+            await _httpClient.SendAsync(request);
 
-    response.EnsureSuccessStatusCode();
-   
-   
+        response.EnsureSuccessStatusCode();
+
         return await response.Content
             .ReadFromJsonAsync<StravaAthleteResponse>();
     }
 
-    public async Task<List<StravaActivity>> GetActivitiesAsync(
-    string accessToken,
-    int page = 1)
+    public async Task<List<StravaActivityResponse>>
+        GetActivitiesAsync(
+            string accessToken,
+            int page,
+            int perPage = 200)
+    {
+        var request =
+            new HttpRequestMessage(
+                HttpMethod.Get,
+                $"https://www.strava.com/api/v3/athlete/activities?page={page}&per_page={perPage}");
+
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                accessToken);
+
+        var response =
+            await _httpClient.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content
+                   .ReadFromJsonAsync<
+                       List<StravaActivityResponse>>()
+               ?? new();
+    }
+
+    public async Task<List<StravaActivityResponse>>
+        GetAllActivitiesAsync(
+            string accessToken)
+    {
+        var result =
+            new List<StravaActivityResponse>();
+
+        var page = 1;
+
+        while (true)
+        {
+            var batch =
+                await GetActivitiesAsync(
+                    accessToken,
+                    page);
+
+            if (batch.Count == 0)
+            {
+                break;
+            }
+
+            result.AddRange(batch);
+
+            page++;
+        }
+
+        return result;
+    }
+
+    public async Task<List<StravaActivityResponse>>
+    GetActivitiesAfterAsync(
+        string accessToken,
+        DateTime afterDate)
 {
-    _httpClient.DefaultRequestHeaders.Authorization =
-        new AuthenticationHeaderValue("Bearer", accessToken);
+    var result =
+        new List<StravaActivityResponse>();
 
-    var response = await _httpClient.GetAsync(
-        $"https://www.strava.com/api/v3/athlete/activities?page={page}&per_page=200");
-
-    response.EnsureSuccessStatusCode();
-
-    var json = await response.Content.ReadAsStringAsync();
-
-    return JsonSerializer.Deserialize<List<StravaActivity>>(
-               json,
-               new JsonSerializerOptions
-               {
-                   PropertyNameCaseInsensitive = true
-               })
-           ?? [];
-}
-
-public async Task<List<StravaActivity>> GetAllActivitiesAsync(
-    string accessToken)
-{
-    var result = new List<StravaActivity>();
+    var after =
+        ((DateTimeOffset)afterDate)
+        .ToUnixTimeSeconds();
 
     var page = 1;
 
     while (true)
     {
-        var batch =
-            await GetActivitiesAsync(
-                accessToken,
-                page);
+        var request =
+            new HttpRequestMessage(
+                HttpMethod.Get,
+                $"https://www.strava.com/api/v3/athlete/activities?page={page}&per_page=200&after={after}");
 
-        if (batch.Count == 0)
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue(
+                "Bearer",
+                accessToken);
+
+        var response =
+            await _httpClient.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        var batch =
+            await response.Content
+                .ReadFromJsonAsync<
+                    List<StravaActivityResponse>>()
+            ?? new();
+
+        if (!batch.Any())
+        {
             break;
+        }
 
         result.AddRange(batch);
 
@@ -119,5 +175,4 @@ public async Task<List<StravaActivity>> GetAllActivitiesAsync(
 
     return result;
 }
-
 }

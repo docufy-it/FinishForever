@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d6c65277-e151-4021-baf5-5cc3d9970eb7/resourceGroups/FinishForever/providers/Microsoft.Web/sites/FinishForever",
+    "appService.deploySubpath": "FinishForever.Web"
+}
