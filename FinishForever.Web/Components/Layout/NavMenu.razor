@@ -1,51 +1,58 @@
-﻿<div class="ff-sidebar">
+﻿
+<div class="ff-sidebar">
 
     <div class="ff-brand">
 
-   <div class="ff-logo">
+    <div class="ff-logo">
+        <img src="images/finishforever-logo.svg"
+             alt="FinishForever Logo" />
+    </div>
 
-    <img
-        src="images/finishforever-logo.svg"
-        alt="FinishForever Logo" />
+    <div class="ff-title">
+        FinishForever
+    </div>
 
 </div>
 
-<div class="ff-title">
-    FinishForever
-</div>
+    <nav class="ff-section">
 
-    </div>
-
-    <div class="ff-section">
-
-        <NavLink href="/" Match="NavLinkMatch.All" class="ff-link">
-            Dashboard
+        <NavLink class="ff-link" href="/dashboard" Match="NavLinkMatch.All">
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
         </NavLink>
 
-        <NavLink href="/dashboard" class="ff-link">
-            Activities
+        <NavLink class="ff-link" href="/activities">
+            <i class="bi bi-activity"></i>
+            <span>Activities</span>
         </NavLink>
 
-        <NavLink href="/year-review" class="ff-link">
-            Year Review
+        <NavLink class="ff-link" href="/statistics">
+            <i class="bi bi-graph-up"></i>
+            <span>Statistics</span>
         </NavLink>
 
-        <NavLink href="/achievements" class="ff-link">
-            Achievements
+        <NavLink class="ff-link" href="/goals">
+            <i class="bi bi-trophy"></i>
+            <span>Goals</span>
         </NavLink>
 
-    </div>
+        <NavLink class="ff-link" href="/reports">
+            <i class="bi bi-file-earmark-bar-graph"></i>
+            <span>Annual Report</span>
+        </NavLink>
+
+    </nav>
 
     <div class="ff-footer">
 
-        <div class="ff-user">
-            Flavio Fruet
-        </div>
-
-        <div class="ff-provider">
-    Powered by Strava
-</div>
-
+    <div class="ff-user">
+        Flavio
     </div>
+
+    <div class="ff-provider">
+        Strava Connected
+    </div>
+
+</div>
 
 </div>

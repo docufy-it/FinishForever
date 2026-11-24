@@ -26,7 +26,6 @@ builder.Services.AddScoped<
     StravaActivityService>();
 builder.Services.AddScoped<DashboardService>();
 
-
 builder.Services.AddApexCharts();
 
 builder.Services.AddHttpContextAccessor();

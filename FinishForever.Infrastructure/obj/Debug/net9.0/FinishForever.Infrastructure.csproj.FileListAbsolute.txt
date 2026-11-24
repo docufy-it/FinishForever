@@ -17,3 +17,4 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Infrastructure\obj\D
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Infrastructure\obj\Debug\net9.0\FinishForever.Infrastructure.pdb
 c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Infrastructure\obj\Debug\net9.0\FinishForever.Infrastructure.genruntimeconfig.cache
 c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Infrastructure\obj\Debug\net9.0\ref\FinishForever.Infrastructure.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Infrastructure\obj\Debug\net9.0\FinishForever.Infrastructure.sourcelink.json

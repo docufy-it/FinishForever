@@ -24,8 +24,21 @@ public class AnnualDashboard
 
     public int ActiveDays { get; set; }
 
-public int ActiveMonths { get; set; }
+    public int ActiveMonths { get; set; }
 
-public string Insight { get; set; } = string.Empty;
+    public string Insight { get; set; } = string.Empty;
 
+    public int LongestStreak { get; set; }
+
+    public double BestMonthKm { get; set; }
+
+    public double BestMonthPercentage { get; set; }
+
+    public int TotalKudos { get; set; }
+
+    public double MarathonEquivalent { get; set; }
+
+    public DateTime BestDayDate { get; set; }
+
+    public double BestDayDistance { get; set; }
 }

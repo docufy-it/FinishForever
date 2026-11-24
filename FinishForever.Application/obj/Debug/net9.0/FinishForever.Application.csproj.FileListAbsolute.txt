@@ -13,3 +13,4 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debu
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\refint\FinishForever.Application.dll
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.pdb
 c:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\ref\FinishForever.Application.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Application\obj\Debug\net9.0\FinishForever.Application.sourcelink.json

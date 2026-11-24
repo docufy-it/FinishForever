@@ -1,49 +1,79 @@
-<svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 420 140">
+<svg width="520"
+     height="220"
+     viewBox="0 0 520 220"
+     xmlns="http://www.w3.org/2000/svg">
 
-    <defs>
+  <defs>
+    <linearGradient id="ffBlue"
+                    x1="40"
+                    y1="40"
+                    x2="480"
+                    y2="180">
+      <stop offset="0%" stop-color="#5B7FFF"/>
+      <stop offset="100%" stop-color="#89A4FF"/>
+    </linearGradient>
+  </defs>
 
-        <style>
+  <!-- INFINITO -->
 
-            .ff-loop {
-                fill: none;
-                stroke: #5B7FFF;
-                stroke-width: 16;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-            }
+  <path
+      d="
+        M120 110
 
-            .ff-text {
-                fill: #FAFAFA;
-                font-family: Inter, Arial, sans-serif;
-                font-size: 42px;
-                font-weight: 600;
-            }
+        C120 55,180 55,260 110
 
-        </style>
+        C340 165,400 165,400 110
 
-    </defs>
+        C400 55,340 55,260 110
 
-    <!-- Infinity -->
+        C180 165,120 165,120 110
+      "
+      fill="none"
+      stroke="url(#ffBlue)"
+      stroke-width="14"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
 
-    <path
-        class="ff-loop"
-        d="
-        M 40 70
-        C 70 25, 120 25, 150 70
-        C 180 115, 230 115, 260 70
-        C 290 25, 340 25, 370 70
-        C 340 115, 290 115, 260 70
-        C 230 25, 180 25, 150 70
-        C 120 115, 70 115, 40 70
-        " />
+  <!-- MEDAGLIA -->
 
-    <!-- finish detail -->
+  <circle
+      cx="330"
+      cy="110"
+      r="34"
+      fill="white"
+      stroke="url(#ffBlue)"
+      stroke-width="6"/>
 
-    <rect x="250" y="28" width="8" height="8" fill="#FAFAFA"/>
-    <rect x="258" y="36" width="8" height="8" fill="#FAFAFA"/>
-    <rect x="266" y="28" width="8" height="8" fill="#FAFAFA"/>
-    <rect x="274" y="36" width="8" height="8" fill="#FAFAFA"/>
+  <!-- ANELLO INTERNO -->
+
+  <circle
+      cx="330"
+      cy="110"
+      r="11"
+      fill="none"
+      stroke="url(#ffBlue)"
+      stroke-width="3"/>
+
+  <!-- RIBBON SINISTRO -->
+
+  <path
+      d="
+        M318 145
+        L305 178
+        L325 164
+        Z
+      "
+      fill="#89A4FF"/>
+
+  <!-- RIBBON DESTRO -->
+
+  <path
+      d="
+        M342 145
+        L355 178
+        L335 164
+        Z
+      "
+      fill="#89A4FF"/>
 
 </svg>

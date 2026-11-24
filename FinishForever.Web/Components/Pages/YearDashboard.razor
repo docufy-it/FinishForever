@@ -2,10 +2,13 @@
 @rendermode InteractiveServer
 
 @using FinishForever.Application.Models
+@using Microsoft.AspNetCore.Components
 
 @inject DashboardService DashboardService
 @inject UserSessionService Session
 @inject NavigationManager Navigation
+
+
 
 @if (_dashboard == null)
 {
@@ -20,7 +23,7 @@ else
         <div class="hero">
 
             <div class="hero-title">
-                @Year RUNNING YEAR
+                @GetYearTitle()
             </div>
 
             <div class="hero-value">
@@ -31,6 +34,66 @@ else
                 @_dashboard.Summary.TotalActivities activities ·
                 @_dashboard.Summary.TotalHours.ToString("N0") hours ·
                 @_dashboard.Summary.TotalElevation.ToString("N0") m D+
+            </div>
+
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="ff-filters">
+
+            <div class="ff-filter-group">
+
+                <span class="ff-filter-label">
+                    Year
+                </span>
+
+                @foreach (var year in _dashboard.AvailableYears)
+                {
+                    <button class="@(SelectedYear == year
+                            ? "ff-filter-button active"
+                            : "ff-filter-button")" @onclick="async () => await ChangeYear(year)">
+
+                        @year
+
+                    </button>
+                }
+
+            </div>
+
+            <div class="ff-filter-group">
+
+                <span class="ff-filter-label">
+                    Sport
+                </span>
+
+                <button class="@(string.IsNullOrWhiteSpace(SelectedSport)
+                        ? "ff-filter-button active"
+                        : "ff-filter-button")" @onclick="async () => await ChangeSport(null)">
+
+                    All
+
+                </button>
+
+                @foreach (var sport in _dashboard.AvailableSports)
+                {
+                    <button class="@(SelectedSport == sport.SportType
+                            ? "ff-filter-button active"
+                            : "ff-filter-button")" @onclick="async () => await ChangeSport(sport.SportType)">
+
+                        @GetSportLabel(sport.SportType)
+
+                        <span style="
+                            opacity:.7;
+                            margin-left:6px;">
+
+                            (@sport.Count)
+
+                        </span>
+
+                    </button>
+                }
+
             </div>
 
         </div>
@@ -99,6 +162,65 @@ else
 
                 </div>
 
+                <div class="stat-card">
+
+                    <div class="stat-number">
+                        @_dashboard.Summary.TotalKudos.ToString("N0")
+                    </div>
+
+                    <div class="stat-label">
+                        Kudos
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- BEST PERFORMANCE -->
+
+        <div class="best-performance-grid">
+
+            <div class="best-month-hero">
+
+                <div class="best-month-title">
+                    🏆 Best Month
+                </div>
+
+                <div class="best-month-name">
+                    @_dashboard.Summary.BestMonth.ToUpper()
+                </div>
+
+                <div class="best-month-metrics">
+
+                    @_dashboard.Summary.BestMonthKm.ToString("N0") km
+
+                    ·
+
+                    @_dashboard.Summary.BestMonthPercentage.ToString("N0")%
+
+                    of yearly distance
+
+                </div>
+
+            </div>
+
+            <div class="best-month-hero">
+
+                <div class="best-month-title">
+                    🔥 Best Day
+                </div>
+
+                <div class="best-month-name">
+                    @_dashboard.Summary.BestDayDistance.ToString("N1") km
+                </div>
+
+                <div class="best-month-metrics">
+                    @_dashboard.Summary.BestDayDate.ToString("dd MMM yyyy")
+                </div>
+
             </div>
 
         </div>
@@ -124,15 +246,15 @@ else
                     </div>
 
                 </div>
-
+                
                 <div class="highlight-card">
 
                     <div class="highlight-title">
-                        Best Month
+                        Marathon Equivalent
                     </div>
 
                     <div class="highlight-value">
-                        @_dashboard.Summary.BestMonth
+                        @_dashboard.Summary.MarathonEquivalent.ToString("N1")
                     </div>
 
                 </div>
@@ -239,8 +361,7 @@ else
 
                         <div class="month-bar-container">
 
-                            <div class="month-bar"
-                                 style="width:@($"{width:F0}%")">
+                            <div class="month-bar" style="width:@($"{width:F0}%")">
                             </div>
 
                         </div>
@@ -258,22 +379,38 @@ else
 
         <!-- RECENT ACTIVITIES -->
 
+        <!-- COMMUNITY FAVORITES -->
+
         <div class="ff-section">
 
             <div class="ff-section-title">
-                Recent Activities
+                Community Favorites
             </div>
 
             <div class="activity-list">
 
-                @foreach (var activity in _dashboard.LatestActivities)
+                @{
+                    var position = 1;
+                }
+
+                @foreach (var activity in
+                    _dashboard.TopKudosActivities)
                 {
+                    var medal =
+                        position switch
+                        {
+                            1 => "🥇",
+                            2 => "🥈",
+                            3 => "🥉",
+                            _ => "⭐"
+                        };
+
                     <div class="activity-card">
 
                         <div>
 
                             <div class="activity-title">
-                                @activity.Name
+                                @medal @activity.Name
                             </div>
 
                             <div class="activity-date">
@@ -282,12 +419,166 @@ else
 
                         </div>
 
-                        <div class="activity-distance">
-                            @activity.DistanceKm.ToString("N1") km
+                        <div style="text-align:right">
+
+                            <div class="activity-distance">
+                                ❤️ @activity.KudosCount
+                            </div>
+
+                            <div class="activity-date">
+                                @activity.DistanceKm.ToString("N1") km
+                            </div>
+
                         </div>
 
                     </div>
+
+                    position++;
                 }
+
+            </div>
+
+        </div>
+
+        <div class="ff-section">
+
+            <div class="ff-section-title">
+                Activity Heatmap
+            </div>
+
+            <div class="hero-description">
+
+                Your consistency throughout the year
+
+            </div>
+
+            <div class="heatmap-container">
+
+                <div class="heatmap-stats">
+
+                    <div class="heatmap-stat">
+
+                        <div class="heatmap-stat-value">
+                            @_dashboard.Summary.ActiveDays
+                        </div>
+
+                        <div class="heatmap-stat-label">
+                            Active Days
+                        </div>
+
+                    </div>
+
+                    <div class="heatmap-stat">
+
+                        <div class="heatmap-stat-value">
+                            @_dashboard.Summary.LongestStreak
+                        </div>
+
+                        <div class="heatmap-stat-label">
+                            Day Streak
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="heatmap-content">
+
+                    <!-- heatmap -->
+
+                </div>
+
+            </div>
+
+            <div class="heatmap-content">
+
+                <div class="heatmap-months">
+
+                    <div class="heatmap-months">
+
+                        <span>Jan</span>
+                        <span>Feb</span>
+                        <span>Mar</span>
+                        <span>Apr</span>
+                        <span>May</span>
+                        <span>Jun</span>
+                        <span>Jul</span>
+                        <span>Aug</span>
+                        <span>Sep</span>
+                        <span>Oct</span>
+                        <span>Nov</span>
+                        <span>Dec</span>
+
+                    </div>
+
+                </div>
+
+                <div class="heatmap-layout">
+
+                    <div class="heatmap-days">
+
+                        <span>M</span>
+                        <span>T</span>
+                        <span>W</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>S</span>
+                        <span>S</span>
+
+                    </div>
+
+                    <div class="heatmap-grid">
+
+                        @foreach (var day in _dashboard.Heatmap)
+                        {
+                            <div class="heatmap-day-wrapper" style="
+                                grid-column:@(day.WeekOfYear + 1);
+                                grid-row:@(day.DayOfWeekIndex + 1);">
+
+                                <div class="heatmap-tooltip">
+
+                                    <div>
+                                        @day.Date.ToString("dd MMM yyyy")
+                                    </div>
+
+                                    <div>
+                                        @day.DistanceKm.ToString("N1") km
+                                    </div>
+
+                                    <div>
+                                        @day.Activities
+                                        @(day.Activities == 1
+                                            ? " activity"
+                                            : " activities")
+                                    </div>
+
+                                </div>
+
+                                <div class="heatmap-day level-@day.Level">
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="heatmap-legend">
+
+                <span>Daily Distance</span>
+
+                <span>0 km</span>
+
+                <div class="heatmap-day level-0"></div>
+                <div class="heatmap-day level-1"></div>
+                <div class="heatmap-day level-2"></div>
+                <div class="heatmap-day level-3"></div>
+                <div class="heatmap-day level-4"></div>
+
+                <span>20 km+</span>
 
             </div>
 
@@ -301,6 +592,16 @@ else
     [Parameter]
     public int Year { get; set; }
 
+    [SupplyParameterFromQuery]
+    public string? Sport { get; set; }
+    private int SelectedYear;
+
+  
+    private string? SelectedSport;
+
+    public List<HeatmapDay> Heatmap { get; set; }
+        = [];
+    
     private YearDashboardViewModel? _dashboard;
 
     protected override async Task OnInitializedAsync()
@@ -314,10 +615,114 @@ else
             return;
         }
 
+        SelectedYear = Year;
+        
+        await LoadDashboard();
+    }
+
+    private async Task ChangeYear(
+     int year)
+    {
+        SelectedYear = year;
+
+        await LoadDashboard();
+    }
+
+    private async Task ChangeSport(
+        string? sport)
+    {
+        SelectedSport = sport;
+
+        await LoadDashboard();
+    }
+
+    private static string GetSportLabel(
+    string sport)
+    {
+        return sport switch
+        {
+            "Run" => "🏃 Running",
+
+            "TrailRun" => "🏔️ Trail",
+
+            "Ride" => "🚴 Cycling",
+
+            "EMountainBikeRide" => "⚡ E-MTB",
+
+            "MountainBikeRide" => "🚵 MTB",
+
+            "VirtualRide" => "🖥️ Virtual Ride",
+
+            "VirtualRun" => "🖥️ Virtual Run",
+
+            "Walk" => "🚶 Walking",
+
+            "Hike" => "🥾 Hiking",
+
+            "Swim" => "🏊 Swimming",
+
+            "Workout" => "🏋️ Workout",
+
+            "Kayaking" => "🛶 Kayaking",
+
+            "Rowing" => "🚣 Rowing",
+
+            "Elliptical" => "🏃 Elliptical",
+
+            "WeightTraining" => "💪 Weights",
+
+            "Yoga" => "🧘 Yoga",
+
+            _ => sport
+        };
+    }
+
+    private async Task LoadDashboard()
+    {
+        var userId =
+            Session.GetCurrentUserId();
+
+        if (userId == null)
+        {
+            return;
+        }
+
         _dashboard =
             await DashboardService
                 .GetYearDashboardAsync(
                     userId.Value,
-                    Year);
+                    SelectedYear,
+                    SelectedSport);
+
+        StateHasChanged();
+    }
+
+    private string GetYearTitle()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedSport))
+        {
+            return $"{Year} SPORT YEAR";
+        }
+
+        return SelectedSport switch
+        {
+            "Run" => $"{Year} RUNNING YEAR",
+            "TrailRun" => $"{Year} TRAIL RUNNING YEAR",
+            "Ride" => $"{Year} CYCLING YEAR",
+            "Walk" => $"{Year} WALKING YEAR",
+            "Hike" => $"{Year} HIKING YEAR",
+            "VirtualRun" => $"{Year} VIRTUAL RUNNING YEAR",
+            _ => $"{Year} SPORT YEAR"
+        };
+    }
+
+    private static string GetHeatmapTooltip(
+    HeatmapDay day)
+    {
+        return
+            $"{day.Date:dd MMM yyyy} | " +
+            $"{day.DistanceKm:N1} km | " +
+            $"{day.Activities} " +
+            $"{(day.Activities == 1 ? "activity" : "activities")}";
     }
 }

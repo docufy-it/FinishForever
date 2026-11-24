@@ -1,54 +1,447 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
 
-@inject UserSessionService Session
-@inject NavigationManager Navigation
+<PageTitle>FinishForever</PageTitle>
 
-@if (!_isAuthenticated)
-{
-    <div class="hero">
+<div class="home-container">
 
-        <div class="hero-title">
-            Every finish lives forever.
+    <!-- HERO -->
+
+    <section class="story-card hero-card">
+
+        <div class="hero-logo">
+
+            <img src="images/finishforever-logo.svg" alt="FinishForever" />
+
         </div>
 
-        <div class="hero-description">
-            Turn your Strava activities into memories,
-            achievements and personal yearbooks.
+        <h1 class="hero-title">
+
+            Your Year In Sport.
+            <br />
+            Reimagined.
+
+        </h1>
+
+        <p class="hero-text">
+
+            Transform your Strava history into beautiful dashboards,
+            heatmaps, reports and memories you'll want to keep forever.
+
+        </p>
+
+        <a class="hero-button" href="/auth/login">
+
+            Connect With Strava
+
+        </a>
+
+        <div class="hero-subtitle">
+
+            Secure OAuth Login · Automatic Sync · Complete Activity History
+
         </div>
 
-        <div style="margin-top:30px;">
-            <a href="/login" class="btn btn-primary">
-                Connect with Strava
+    </section>
+
+    <!-- CONNECT -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                01
+            </div>
+
+            <h2>
+                Connect Strava
+            </h2>
+
+            <p>
+
+                Link your Strava account securely using OAuth.
+                FinishForever automatically imports your sporting history,
+                achievements, elevation gain and kudos.
+
+            </p>
+
+            <div class="story-flow">
+
+                <div class="story-node">
+                    STRAVA
+                </div>
+
+                <div class="story-arrow">
+                    →
+                </div>
+
+                <div class="story-node">
+                    FINISHFOREVER
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="heatmap-preview heatmap-stage-1">
+
+            @for (int i = 0; i < 182; i++)
+            {
+                <div class="heatmap-cell"></div>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- IMPORT -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                02
+            </div>
+
+            <h2>
+                Build Your History
+            </h2>
+
+            <p>
+
+                Every run.
+                Every ride.
+                Every hike.
+                Every achievement.
+
+                Your entire activity history becomes available
+                in one place.
+
+            </p>
+
+            <div class="years-line">
+
+                <span>2019</span>
+                <span>2020</span>
+                <span>2021</span>
+                <span>2022</span>
+                <span>2023</span>
+                <span>2024</span>
+                <span>2025</span>
+                <span>2026</span>
+
+            </div>
+
+        </div>
+
+        <div class="heatmap-preview heatmap-stage-2">
+
+            @for (int i = 0; i < 182; i++)
+            {
+                <div class="heatmap-cell"></div>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- ANALYZE -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                03
+            </div>
+
+            <h2>
+                Discover Your Story
+            </h2>
+
+            <p>
+
+                Distance.
+                Elevation.
+                Active days.
+                Longest streaks.
+                Kudos.
+
+                Transform raw activity data into meaningful insights.
+
+            </p>
+
+            <div class="insight-grid">
+
+                <div class="insight-tile">
+                    941 km
+                </div>
+
+                <div class="insight-tile">
+                    61 Active Days
+                </div>
+
+                <div class="insight-tile">
+                    1,482 Kudos
+                </div>
+
+                <div class="insight-tile">
+                    22.3 Marathons
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="heatmap-preview heatmap-stage-3">
+
+            @for (int i = 0; i < 182; i++)
+            {
+                <div class="heatmap-cell"></div>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- DASHBOARD -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                04
+            </div>
+
+            <h2>
+                Interactive Dashboards
+            </h2>
+
+            <p>
+
+                Visualize your year with beautiful summaries,
+                personal achievements,
+                monthly progression,
+                best performances and annual insights.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <img class="dashboard-mockup" src="images/year-dashboard-preview.png" alt="Year Dashboard" />
+
+        </div>
+
+    </section>
+
+    <!-- HEATMAP -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                05
+            </div>
+
+            <h2>
+                Visualize Consistency
+            </h2>
+
+            <p>
+
+                Every training day.
+                Every effort.
+                Every finish.
+
+                Captured inside a single visual representation
+                of your sporting year.
+
+            </p>
+
+        </div>
+
+        <div class="heatmap-preview heatmap-stage-5">
+
+            @for (int i = 0; i < 182; i++)
+            {
+                <div class="heatmap-cell"></div>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- SHARE -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                06
+            </div>
+
+            <h2>
+                Share Your Year
+            </h2>
+
+            <p>
+
+                Generate beautiful share cards for social media
+                and show your sporting journey to friends,
+                teammates and followers.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <div class="share-preview">
+
+                <div class="share-year">
+
+                    2026 RUNNING YEAR
+
+                </div>
+
+                <div class="share-km">
+
+                    941 km
+
+                </div>
+
+                <div class="share-stats">
+
+                    61 Active Days · 1,482 Kudos
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FUTURE -->
+
+    <section class="story-card">
+
+        <div>
+
+            <div class="story-step">
+                07
+            </div>
+
+            <h2>
+                Beyond Dashboards
+            </h2>
+
+            <p>
+
+                Soon your dashboards and heatmaps will become
+                physical keepsakes and collectible memories.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <div class="future-grid">
+
+                <div class="future-tile">
+
+                    🖼️
+
+                    <br />
+                    <br />
+
+                    Year Poster
+
+                </div>
+
+                <div class="future-tile">
+
+                    🎨
+
+                    <br />
+                    <br />
+
+                    Heatmap Canvas
+
+                </div>
+
+                <div class="future-tile">
+
+                    🏅
+
+                    <br />
+                    <br />
+
+                    Achievement Board
+
+                </div>
+
+                <div class="future-tile">
+
+                    📖
+
+                    <br />
+                    <br />
+
+                    Year Book
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FINAL CTA -->
+
+    <section class="story-card final-card">
+
+        <div>
+
+            <div class="final-message">
+
+                Every finish tells a story.
+                <br />
+                Keep it forever.
+
+            </div>
+
+            <a class="hero-button" href="/auth/login">
+
+                Connect With Strava
+
             </a>
+
         </div>
 
-        <div style="margin-top:30px; color:#888;">
-            ✓ Secure Strava Login<br />
-            ✓ Automatic activity import<br />
-            ✓ Personalized running insights
-        </div>
+    </section>
 
-    </div>
-}
+</div>
 
 @code
 {
-    private bool _isAuthenticated;
-
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(
+        bool firstRender)
     {
-        var userId = Session.GetCurrentUserId();
-
-        if (userId != null)
+        if (firstRender)
         {
-            _isAuthenticated = true;
-
-            Navigation.NavigateTo(
-                $"/year/{DateTime.Now.Year}",
-                true);
-
-            return;
+            await JS.InvokeVoidAsync(
+                "initHomepageAnimations");
         }
-
-}
+    }
 }

@@ -10,6 +10,17 @@ public class YearDashboardViewModel
     public List<MonthlyBreakdown> Months { get; set; }
         = new();
 
-    public List<StravaActivity> LatestActivities { get; set; }
+    public List<StravaActivity> TopKudosActivities { get; set; }
         = new();
+
+    public List<int> AvailableYears { get; set; }
+= [];
+
+    public List<SportFilterItem> AvailableSports { get; set; }
+    = [];
+
+    public List<HeatmapDay> Heatmap { get; set; }
+= [];
+
+
 }

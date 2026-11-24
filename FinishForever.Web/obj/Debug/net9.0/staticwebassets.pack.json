@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Sviluppo\\Personal\\Docufy\\FinishForever\\src\\FinishForever.Web\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\FinishForever.Web.bundle.scp.css",
-      "PackagePath": "staticwebassets\\FinishForever.Web.c8gfoorjkj.bundle.scp.css"
+      "PackagePath": "staticwebassets\\FinishForever.Web.64maggtww0.bundle.scp.css"
     },
     {
       "Id": "C:\\Sviluppo\\Personal\\Docufy\\FinishForever\\src\\FinishForever.Web\\wwwroot\\app.css",
@@ -15,6 +15,10 @@
     {
       "Id": "C:\\Sviluppo\\Personal\\Docufy\\FinishForever\\src\\FinishForever.Web\\wwwroot\\images\\finishforever-logo.svg",
       "PackagePath": "staticwebassets\\images\\finishforever-logo.svg"
+    },
+    {
+      "Id": "C:\\Sviluppo\\Personal\\Docufy\\FinishForever\\src\\FinishForever.Web\\wwwroot\\js\\home.js",
+      "PackagePath": "staticwebassets\\js\\home.js"
     },
     {
       "Id": "C:\\Sviluppo\\Personal\\Docufy\\FinishForever\\src\\FinishForever.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

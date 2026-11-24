@@ -245,8 +245,6 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\dko6y7plta-lbf9h1ivn2.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\1j8oabzfj7-2pd0aa1s4u.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\0g0tdqq8mx-t2c2f4enq2.gz
-C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\o6lg1giqjt-wf2v0bjerg.gz
-C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\zbzxermu9j-bu429y9xiw.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\om0i3kw8tz-bqjiyaj88i.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\tmjnhvz43j-c2jlpeoesf.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\x0qfma22af-erw9l3u2r3.gz
@@ -291,8 +289,6 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\kz8ewnweeo-h1s4sie4z3.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\ggu5mm8zkc-63fj8s7r0e.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\fku5nvuxot-0j3bgjxly4.gz
-C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\c1ilqf9e6h-c8gfoorjkj.gz
-C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\wowboz3nq2-c8gfoorjkj.gz
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\staticwebassets.build.json
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\staticwebassets.development.json
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -307,3 +303,8 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\refint\FinishForever.Web.dll
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\FinishForever.Web.genruntimeconfig.cache
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\ref\FinishForever.Web.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\o6lg1giqjt-z3j4eu0cl2.gz
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\zbzxermu9j-uo9ws6x8ib.gz
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\c1ilqf9e6h-64maggtww0.gz
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\wowboz3nq2-64maggtww0.gz
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Web\obj\Debug\net9.0\compressed\m64huehl1g-btw897mp13.gz

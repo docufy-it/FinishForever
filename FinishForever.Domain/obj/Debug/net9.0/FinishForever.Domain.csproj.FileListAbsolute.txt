@@ -9,3 +9,4 @@ C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Debug\net
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Debug\net9.0\refint\FinishForever.Domain.dll
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Debug\net9.0\FinishForever.Domain.pdb
 C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Debug\net9.0\ref\FinishForever.Domain.dll
+C:\Sviluppo\Personal\Docufy\FinishForever\src\FinishForever.Domain\obj\Debug\net9.0\FinishForever.Domain.sourcelink.json
